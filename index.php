@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ToDoList</title>
+
+        <link rel="stylesheet" href="css/fontawesome.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <nav>
+            <div id="logo">
+                ToDoList
+            </div>
+            <div id="menu">
+                <a href="#" id="menu_add">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+        </nav>
+
+
+        <section id="app_form">
+            <form name="form_todolist" method="POST" action="#">
+                <fieldset>
+                    <legend>Informations sur la tâche</legend>
+
+                    <div class="form_left">
+                        <p class="field">
+                            <label for="objet">Objet</label>
+                            <br />
+                            <input type="text" name="objet" id="objet" required />
+                        </p>
+
+                        <p class="field">
+                            <label for="priorite">Priorité</label>
+                            <br />
+                            <select name="priorite" id="priorite">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </p>
+
+                        <p class="field">
+                            <label for="date">Date d'échéance</label>
+                            <br />
+                            <input type="date" name="date" id="date" placeholder="JJ/MM/AAAA" required />
+                        </p>
+                    </div>
+
+
+                    <div class="form_right">
+                        <p class="field">
+                            <label for="description">Description</label>
+                            <br />
+                            <textarea name="description" id="description" placeholder="En quoi consiste cette tâche ?"></textarea>
+                        </p>
+                        <p class="button">
+                            <input type="reset" name="annuler" id="annuler" value="Annuler" />
+                            <input type="submit" name="enregistrer" id="enregistrer" value="Enregistrer" />
+                        </p>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+
+
+        <section id="app_list">
+            <div class="search">
+                <input type="search" name="search" id="search" placeholder="Rechercher une tâche..." />
+                <i class="fas fa-search"></i>
+            </div>
+
+            <div id="elements">
+                <div class="element">
+                    <div class="entete">
+                        <div class="entete_objet">
+                            cxCGxCxhg
+                        </div>
+
+                        <div class="entete_options">
+                            <i class="fas fa-pencil-alt edit"></i>
+                            <i class="far fa-trash-alt delete"></i>
+                        </div>
+                    </div>
+
+
+                    <div class="corps">
+                        vsdhjh fbfbj jhdjfbdjfd
+                    </div>
+
+                    <div class="footer">
+                        <div class="footer_left">
+                            07/08/2025
+                        </div>
+
+                        <div class="footer_right">
+                            En cours
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <script type="text/javascript" src="js/fontawesome.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+    </body>
+</html>

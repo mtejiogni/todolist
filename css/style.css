@@ -1,0 +1,190 @@
+:root {
+    --main-color: rgb(19, 17, 86);
+    --second-color: rgb(59, 198, 45);
+    --main-font: "Century Gothic", verdana, sans-serif;
+}
+
+
+.hide {
+    display: none !important;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-size: 12pt;
+    font-family: var(--main-font);
+}
+
+nav {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 0px;
+    background-color: rgba(255, 255, 255,  1);
+    z-index: 99999999;
+}
+
+nav #logo {
+    font-family: forte, verdana, sans-serif;
+    font-size: 20pt;
+}
+
+nav #menu {
+    margin: 0px 25px 0px 0px;
+}
+
+nav #menu a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: var(--main-color);
+    padding: 10px 12px;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+#app_form {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    color: white;
+}
+
+#app_form form {
+    width: 60%;
+}
+
+#app_form form fieldset {
+    text-align: center;
+}
+
+#app_form form .form_left,
+#app_form form .form_right {
+    display: inline-block;
+    vertical-align: top;
+    width: 43%;
+    min-width: 230px;
+    margin: 20px 15px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+#app_form form .field input,
+#app_form form .field select,
+#app_form form .field textarea {
+    width: 100%;
+    height: 30px;
+    margin: 10px 0px;
+    padding: 0px 5px;
+    font-size: 13pt;
+    border: none;
+    border-bottom: 2px solid black;
+    box-sizing: border-box;
+}
+
+#app_form form .field textarea {
+    height: 130px;
+    max-height: 130px;
+    padding: 10px;
+}
+
+#app_form form .button {
+    text-align: right;
+}
+
+#app_form form .button input {
+    padding: 10px 12px;
+    margin: 0px 5px;
+    color: white;
+    background-color: var(--second-color);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#app_list {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 100px 20px 40px 20px;
+}
+
+#app_list .search {
+    position: relative;
+    width: 80%;
+    height: auto;
+    margin: 0px auto 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#app_list .search input {
+    width: 100%;
+    height: 40px;
+    font-size: 13pt;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: 2px solid var(--main-color);
+}
+
+#app_list .search i {
+    position: absolute;
+    right: 8px;
+    top: 12px;
+    color: var(--main-color)
+}
+
+#elements {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 15px;
+}
+
+.element {
+    background-color: var(--main-color);
+    color: white;
+    padding: 20px;
+}
+
+.element .entete {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.element .entete i {
+    display: inline-block;
+    margin: 2px 3px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.element .corps {
+    text-align: justify;
+    padding: 20px 5px;
+    font-size: 11pt;
+}
+
+.element .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10pt;
+}
+
