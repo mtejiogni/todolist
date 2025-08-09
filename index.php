@@ -1,3 +1,7 @@
+<?php
+require_once 'service.php';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
