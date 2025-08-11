@@ -24,6 +24,12 @@ class TacheDB {
         $this->db->prepare($sql, $params);
     }
 
+    public function updateStatut($reference, $statut) {
+        $sql= "update $this->nametable set statut=? where reference=?";
+        $params= array($statut, $reference);
+        $this->db->prepare($sql, $params);
+    }
+
     public function delete($reference) {
         $sql= "delete from $this->nametable where reference=?";
         $params= array($reference);

@@ -1,5 +1,5 @@
 <?php
-require_once 'service.php';
+// require_once 'service.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ require_once 'service.php';
 
 
         <section id="app_form">
-            <form name="form_todolist" method="POST" action="#">
+            <form name="form_todolist" id="form_todolist" method="POST" action="#">
                 <fieldset>
                     <legend>Informations sur la tâche</legend>
 
