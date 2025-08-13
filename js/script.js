@@ -67,14 +67,14 @@ class Database {
                 let res= JSON.parse(this.responseText);
                 if(res.status == 'success') {
                     document.querySelector('#elements').innerHTML= '';
-                    for(let i= 0; i< res.length; i++) {
+                    for(let i= 0; i< res.datas.length; i++) {
                         let tache= new Tache(
-                            res.datas.reference,
-                            res.datas.objet,
-                            res.datas.description,
-                            res.datas.priorite,
-                            res.datas.statut,
-                            res.datas.date_echeance
+                            res.datas[i].reference,
+                            res.datas[i].objet,
+                            res.datas[i].description,
+                            res.datas[i].priorite,
+                            res.datas[i].statut,
+                            res.datas[i].date_echeance
                         )
                         document.querySelector('#elements').appendChild(tache.convertToHTML());
                     }
@@ -92,6 +92,7 @@ class Database {
 
 
     create(tache) {
+        let self= this;
         let xhttp= new XMLHttpRequest();
         xhttp.open('POST', this.urlapi + '?action=create', true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -110,7 +111,7 @@ class Database {
                         res.datas.date_echeance
                     )
                     alert(res.message);
-                    document.querySelector('#elements').appendChild(tache.convertToHTML());
+                    self.readAll();
                 }
                 else {
                     console.error('Internal Error : ', res);
@@ -123,7 +124,9 @@ class Database {
         }
     }
 
+
     update(tache) {
+        let self= this;
         let xhttp= new XMLHttpRequest();
         xhttp.open('POST', this.urlapi + '?action=update', true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -142,7 +145,7 @@ class Database {
                         res.datas.date_echeance
                     )
                     alert(res.message);
-                    document.querySelector('#elements').appendChild(tache.convertToHTML());
+                    self.readAll();
                 }
                 else {
                     console.error('Internal Error : ', res);
@@ -154,6 +157,103 @@ class Database {
             }
         }
     }
+
+
+
+
+    updateStatut(tache) {
+        let self= this;
+        let xhttp= new XMLHttpRequest();
+        xhttp.open('POST', this.urlapi + '?action=update_statut', true);
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhttp.send(tache.setFormatRequest(null));
+        xhttp.onload= function() {
+            if(this.status === 200) {
+                console.log(this.responseText);
+                let res= JSON.parse(this.responseText);
+                if(res.status == 'success') {
+                    let tache= new Tache(
+                        res.datas.reference,
+                        res.datas.objet,
+                        res.datas.description,
+                        res.datas.priorite,
+                        res.datas.statut,
+                        res.datas.date_echeance
+                    )
+                    alert(res.message);
+                    self.readAll();
+                }
+                else {
+                    console.error('Internal Error : ', res);
+                    alert(res.message);
+                }
+            }
+            else {
+                console.error('Request Error : ', this.status, this.statusText);
+            }
+        }
+    }
+
+
+
+    delete(reference) {
+        let self= this;
+        let xhttp= new XMLHttpRequest();
+        xhttp.open('GET', this.urlapi + '?action=delete&reference=' + reference, true);
+        xhttp.send();
+        xhttp.onload= function() {
+            if(this.status === 200) {
+                console.log(this.responseText);
+                let res= JSON.parse(this.responseText);
+                if(res.status == 'success') {
+                    alert(res.message);
+                    self.readAll();
+                }
+                else {
+                    console.error('Internal Error : ', res);
+                    alert(res.message);
+                }
+            }
+            else {
+                console.error('Request Error : ', this.status, this.statusText);
+            }
+        }
+    }
+
+
+
+
+    read(reference) {
+        let tache= null;
+        let xhttp= new XMLHttpRequest();
+        xhttp.open('GET', this.urlapi + '?action=read&reference=' + reference, true);
+        xhttp.send();
+        xhttp.onload= function() {
+            if(this.status === 200) {
+                console.log(this.responseText);
+                let res= JSON.parse(this.responseText);
+                if(res.status == 'success') {
+                    tache= new Tache(
+                        res.datas.reference,
+                        res.datas.objet,
+                        res.datas.description,
+                        res.datas.priorite,
+                        res.datas.statut,
+                        res.datas.date_echeance
+                    )
+                }
+                else {
+                    console.error('Internal Error : ', res);
+                    alert(res.message);
+                }
+            }
+            else {
+                console.error('Request Error : ', this.status, this.statusText);
+            }
+        }
+        return tache;
+    }
+    
 }
 
 
