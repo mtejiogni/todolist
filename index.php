@@ -66,6 +66,9 @@
                         <p class="button">
                             <input type="reset" name="annuler" id="annuler" value="Annuler" />
                             <input type="submit" name="enregistrer" id="enregistrer" value="Enregistrer" />
+
+                            <input type="hidden" name="reference" id="reference" />
+                            <input type="hidden" name="statut" id="statut" />
                         </p>
                     </div>
                 </fieldset>

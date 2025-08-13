@@ -45,7 +45,7 @@ class Tache {
 
         let elt= document.createElement('div');
         elt.classList.add('element');
-        elt.id= this.reference;
+        elt.id= 'tache_' + this.reference;
         elt.innerHTML= str;
         return elt;
     }
@@ -58,6 +58,7 @@ class Database {
 
 
     readAll() {
+        let self= this;
         let xhttp= new XMLHttpRequest();
         xhttp.open('GET', this.urlapi + '?action=readall', true);
         xhttp.send();
@@ -76,7 +77,21 @@ class Database {
                             res.datas[i].statut,
                             res.datas[i].date_echeance
                         )
-                        document.querySelector('#elements').appendChild(tache.convertToHTML());
+
+                        let elt= tache.convertToHTML();
+                        elt.querySelector('.edit').onclick= function() {
+                            document.querySelector('#objet').value= res.datas[i].objet;
+                            document.querySelector('#description').value= res.datas[i].description;
+                            document.querySelector('#priorite').value= res.datas[i].priorite;
+                            document.querySelector('#date').value= res.datas[i].date_echeance;
+                            document.querySelector('#reference').value= res.datas[i].reference;
+                            document.querySelector('#statut').value= res.datas[i].statut;
+                        }
+                        elt.querySelector('.delete').onclick= function() {
+                            self.delete(res.datas[i].reference);
+                        }
+
+                        document.querySelector('#elements').appendChild(elt);
                     }
                 }
                 else {
@@ -253,9 +268,13 @@ class Database {
         }
         return tache;
     }
-    
+
 }
 
+
+// Déclaration des objets
+let db= new Database();
+db.readAll();
 
 
 // Créer une tâche
@@ -265,7 +284,16 @@ document.querySelector('#form_todolist').onsubmit= function(e) {
     let description= document.querySelector('#description').value;
     let priorite= document.querySelector('#priorite').value;
     let date_echeance= document.querySelector('#date').value;
-    let tache= new Tache(null, objet, description, priorite, null, date_echeance);
-    let db= new Database();
-    db.create(tache);
+    let reference= document.querySelector('#reference').value;
+    let statut= document.querySelector('#statut').value;
+    let tache= new Tache(reference, objet, description, priorite, statut, date_echeance);
+
+    if(reference == null || reference == '') {
+        db.create(tache);
+    }
+    else {
+        db.update(tache);
+        document.querySelector('#reference').value= '';
+        document.querySelector('#statut').value= '';
+    }
 }
