@@ -204,11 +204,11 @@ nav #menu a {
     border: 2px solid var(--main-color);
 }
 
-#app_list .search i {
+#app_list .search span {
     position: absolute;
     right: 8px;
     top: 12px;
-    color: var(--main-color)
+    color: var(--main-color);
 }
 
 #elements {

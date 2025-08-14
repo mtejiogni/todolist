@@ -62,6 +62,7 @@ class Database {
 
 
     readAll() {
+        document.querySelector('#refresh').classList.remove('hide');
         let self= this;
         let xhttp= new XMLHttpRequest();
         xhttp.open('GET', this.urlapi + '?action=readall', true);
@@ -83,7 +84,7 @@ class Database {
                         )
 
                         let elt= tache.convertToHTML();
-                        elt.querySelector(`#tache_${res.datas[i].reference} .edit`).onclick= function() {
+                        elt.querySelector('.edit').onclick= function() {
                             document.querySelector('#objet').value= res.datas[i].objet;
                             document.querySelector('#description').value= res.datas[i].description;
                             document.querySelector('#priorite').value= res.datas[i].priorite;
@@ -93,6 +94,18 @@ class Database {
                         }
                         elt.querySelector('.delete').onclick= function() {
                             self.delete(res.datas[i].reference);
+                        }
+                        elt.ondblclick= function() {
+                            if(res.datas[i].statut == 'En cours') {
+                                self.updateStatut(res.datas[i].reference, 'Terminée');
+                            }
+                            else {
+                                self.updateStatut(res.datas[i].reference, 'En cours');
+                            }
+                        }
+
+                        if(res.datas[i].statut == 'Terminée') {
+                            elt.classList.add('bg-second-color');
                         }
 
                         document.querySelector('#elements').appendChild(elt);
@@ -106,9 +119,9 @@ class Database {
             else {
                 console.error('Request Error : ', this.status, this.statusText);
             }
-        }
 
-        console.log(document.querySelector('.edit'));
+            document.querySelector('#refresh').classList.add('hide');
+        }
     }
 
 
@@ -183,12 +196,12 @@ class Database {
 
 
 
-    updateStatut(tache) {
+    updateStatut(reference, statut) {
         let self= this;
         let xhttp= new XMLHttpRequest();
         xhttp.open('POST', this.urlapi + '?action=update_statut', true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhttp.send(tache.setFormatRequest(null));
+        xhttp.send(`reference=${reference}&statut=${statut}`);
         xhttp.onload= function() {
             if(this.status === 200) {
                 console.log(this.responseText);
@@ -281,9 +294,17 @@ class Database {
 
 
 // Déclaration des objets
+let app_form= document.querySelector('#app_form');
 let db= new Database();
 db.readAll();
 
+
+
+// Gestion de la navigation
+document.querySelector('#menu_add').onclick= function() {
+    app_form.classList.toggle('hide');
+    app_form.classList.toggle('anim');
+}
 
 
 
@@ -306,4 +327,12 @@ document.querySelector('#form_todolist').onsubmit= function(e) {
         document.querySelector('#reference').value= '';
         document.querySelector('#statut').value= '';
     }
+    app_form.classList.add('hide');
+    app_form.classList.remove('anim');
+}
+
+// Gestion de la barre de recherche
+document.querySelector('#search').onkeyup= function(e) {
+    let search= this.value.toLower().trim();
+    let elements= document.querySelectorAll('.element');
 }

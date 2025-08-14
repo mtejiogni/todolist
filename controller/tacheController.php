@@ -49,7 +49,7 @@ if($action == 'update_statut') {
     try {
         $tachedb->updateStatut($reference, $statut);
         $tache= $tachedb->read($reference);
-        $package->setJSONResponseSuccess("Statut modifié avec succès", $tache);
+        $package->setJSONResponseSuccess("Statut de la tâche #$reference modifié avec succès", $tache);
     }
     catch(Exception $ex) {
         $package->setJSONResponseError("Erreur : " . $ex->getMessage());
