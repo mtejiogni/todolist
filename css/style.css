@@ -28,6 +28,39 @@
 
 
 
+/*============= Refresh Animation =================*/
+
+@keyframes animRefresh {
+    from {
+        transform: rotate(360deg);
+    }
+}
+
+#refresh {
+    position: fixed;
+    z-index: 99999999999;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255,  0.6);
+}
+
+#refresh span {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border-bottom: 4px solid rgba(19, 17, 86, 1);
+    border-radius: 200px;
+    animation: animRefresh 0.4s linear infinite;
+}
+
+/*============= Fin Refresh Animation =================*/
+
+
 .bg-main-color {
     background-color: var(--main-color) !important;
 }
@@ -203,14 +236,14 @@ nav #menu a {
     text-align: left;
 }
 
-.element .entete .entete_options * {
+.element .entete .entete_options span {
     display: inline-block;
     margin: 2px 4px;
     cursor: pointer;
     font-size: 1.2em;
 }
 
-.element .entete .entete_options *:hover {
+.element .entete .entete_options span:hover {
     transform: scale(1.1);
     transition: all 0.5s ease-in-out;
 }

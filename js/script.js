@@ -27,8 +27,12 @@ class Tache {
         str= str + this.objet;
         str= str + '</div>';
         str= str + '<div class="entete_options">';
-        str= str + '<i class="fas fa-pencil-alt edit"></i>';
-        str= str + '<i class="far fa-trash-alt delete"></i>';
+        str= str + '<span class="edit">';
+        str= str + '<i class="fas fa-pencil-alt"></i>';
+        str= str + '</span>';
+        str= str + '<span class="delete">';
+        str= str + '<i class="far fa-trash-alt"></i>';
+        str= str + '</span>';
         str= str + '</div>';
         str= str + '</div>';
         str= str + '<div class="corps">';

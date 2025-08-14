@@ -13,6 +13,12 @@
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
+        <!-- ===== Refresh Animation ====== -->
+        <div id="refresh" class="hide">
+            <span></span>
+        </div>
+        <!-- ===== End Refresh Animation ====== -->
+
         <nav>
             <div id="logo">
                 ToDoList
