@@ -79,7 +79,7 @@ class Database {
                         )
 
                         let elt= tache.convertToHTML();
-                        elt.querySelector('.edit').onclick= function() {
+                        elt.querySelector(`#tache_${res.datas[i].reference} .edit`).onclick= function() {
                             document.querySelector('#objet').value= res.datas[i].objet;
                             document.querySelector('#description').value= res.datas[i].description;
                             document.querySelector('#priorite').value= res.datas[i].priorite;
@@ -103,7 +103,10 @@ class Database {
                 console.error('Request Error : ', this.status, this.statusText);
             }
         }
+
+        console.log(document.querySelector('.edit'));
     }
+
 
 
     create(tache) {
@@ -272,12 +275,15 @@ class Database {
 }
 
 
+
 // Déclaration des objets
 let db= new Database();
 db.readAll();
 
 
-// Créer une tâche
+
+
+// Créer et modifier une tâche
 document.querySelector('#form_todolist').onsubmit= function(e) {
     e.preventDefault();
     let objet= document.querySelector('#objet').value;

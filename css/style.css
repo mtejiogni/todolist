@@ -5,6 +5,37 @@
 }
 
 
+/*============= Animations =================*/
+@keyframes anim {
+    from {
+        opacity: 0;
+        transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+        animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+}
+
+.anim {
+    animation: anim 1s;
+}
+
+/*============= Fin Animations =================*/
+
+
+
+.bg-main-color {
+    background-color: var(--main-color) !important;
+}
+
+.bg-second-color {
+    background-color: var(--second-color) !important;
+}
+
 .hide {
     display: none !important;
 }
@@ -167,11 +198,25 @@ nav #menu a {
     align-items: center;
 }
 
-.element .entete i {
+.element .entete .entete_objet {
+    font-weight: bold;
+    text-align: left;
+}
+
+.element .entete .entete_options * {
     display: inline-block;
-    margin: 2px 3px;
+    margin: 2px 4px;
     cursor: pointer;
     font-size: 1.2em;
+}
+
+.element .entete .entete_options *:hover {
+    transform: scale(1.1);
+    transition: all 0.5s ease-in-out;
+}
+
+.element .entete .entete_options .delete {
+    color: red;
 }
 
 .element .corps {
@@ -186,5 +231,9 @@ nav #menu a {
     justify-content: space-between;
     align-items: center;
     font-size: 10pt;
+}
+
+.element .footer .footer_right {
+    font-weight: bold;
 }
 
